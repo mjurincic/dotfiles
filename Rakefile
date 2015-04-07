@@ -8,6 +8,13 @@ namespace :install do
 end
 
 namespace :configure do
+  task :osx do
+    if RUBY_PLATFORM.downcase.include?("darwin")
+      puts "Configuring OSX..."
+      run %{ bash osx/osx.sh }
+    end
+  end
+
   task :git do
     puts "Configuring git..."
     link_files(Dir['git/*'])
@@ -15,7 +22,7 @@ namespace :configure do
   end
 
   task :tmux do
-    puts "Configuring tmux"
+    puts "Configuring tmux..."
     link_files(Dir['tmux/*'])
   end
 end

@@ -89,15 +89,11 @@ brew install ctags
 brew install git
 brew install hub
 brew install imagemagick --with-webp
-brew install lua
-brew install lynx
 brew install p7zip
 brew install pigz
 brew install pv
 brew install reattach-to-user-namespace
 brew install rename
-brew install rhino
-brew install speedtest_cli
 brew install ssh-copy-id
 brew install the_silver_searcher
 brew install tmux
