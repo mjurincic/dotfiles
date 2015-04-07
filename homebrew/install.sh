@@ -100,7 +100,6 @@ brew install tmux
 brew install tree
 brew install webkit2png
 brew install zopfli
-brew install zsh
 
 # Remove outdated versions from the cellar.
 brew cleanup

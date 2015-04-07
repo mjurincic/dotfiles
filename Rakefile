@@ -1,14 +1,22 @@
 require 'rake'
 
-namespace :configure do
+namespace :install do
   task :homebrew do
     run %{ bash homebrew/install.sh }
+  end
+
+  task :oh_my_zsh do
+    if !File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
+      run %{ git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"}
+    end
   end
 
   task :binaries do
     run %{ cp -Pa bin/. #{ENV["HOME"]}/.bin/ }
   end
+end
 
+namespace :configure do
   task :osx do
     if RUBY_PLATFORM.downcase.include?("darwin")
       run %{ bash osx/osx.sh }
@@ -57,6 +65,15 @@ end
 def install_vim_plugins
   backup_file("vim", nil, "#{ENV['HOME']}/.vim")
   run %{ bash vim/install_plugins.sh }
+end
+
+# Zsh/bash switching
+def switch_to_zsh
+  run %{ chsh -s `which zsh` } if !ENV["SHELL"] =~ /zsh/
+end
+
+def switch_to_bash
+  run %{ chsh -s `which bash` } if !ENV["SHELL"] =~ /bash/
 end
 
 # File operation helpers
