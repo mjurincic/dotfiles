@@ -13,6 +13,11 @@ namespace :configure do
     link_files(Dir['git/*'])
     configure_git_user
   end
+
+  task :tmux do
+    puts "Configuring tmux"
+    link_files(Dir['tmux/*'])
+  end
 end
 
 private
