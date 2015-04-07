@@ -1,12 +1,14 @@
 require 'rake'
 
-namespace :install do
+namespace :configure do
   task :homebrew do
     run %{ bash homebrew/install.sh }
   end
-end
 
-namespace :configure do
+  task :binaries do
+    run %{ cp -Pa bin/. #{ENV["HOME"]}/.bin/ }
+  end
+
   task :osx do
     if RUBY_PLATFORM.downcase.include?("darwin")
       run %{ bash osx/osx.sh }
@@ -77,16 +79,8 @@ def link_file(file)
   file_operation(file, :symlink)
 end
 
-def copy_file(file)
-  file_operation(file, :copy)
-end
-
 def link_files(files)
   files.each { |file| link_file(file) }
-end
-
-def copy_files(files)
-  files.each { |file| copy_file(file) }
 end
 
 def proceed?(action)
