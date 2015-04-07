@@ -1,9 +1,15 @@
 require 'rake'
 
-namespace :configure do
-  desc 'Configure stuff'
+namespace :install do
+  task :homebrew do
+    puts "Installing Homebrew and some useful packages..."
+    run %{ bash homebrew/install.sh }
+  end
+end
 
+namespace :configure do
   task :git do
+    puts "Configuring git..."
     link_files(Dir['git/*'])
     configure_git_user
   end
@@ -12,7 +18,7 @@ end
 private
 # General functions
 def run(cmd)
-  `#{cmd}` unless ENV['DEBUG']
+  system "#{cmd}" unless ENV['DEBUG']
 end
 
 # Git configuration
