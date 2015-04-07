@@ -2,7 +2,6 @@ require 'rake'
 
 namespace :install do
   task :homebrew do
-    puts "Installing Homebrew and some useful packages..."
     run %{ bash homebrew/install.sh }
   end
 end
@@ -10,20 +9,22 @@ end
 namespace :configure do
   task :osx do
     if RUBY_PLATFORM.downcase.include?("darwin")
-      puts "Configuring OSX..."
       run %{ bash osx/osx.sh }
     end
   end
 
   task :git do
-    puts "Configuring git..."
     link_files(Dir['git/*'])
     configure_git_user
   end
 
   task :tmux do
-    puts "Configuring tmux..."
     link_files(Dir['tmux/*'])
+  end
+
+  task :vim do
+    link_files(Dir['vim/vimrc'])
+    install_vim_plugins
   end
 end
 
@@ -48,6 +49,12 @@ def ask_github_name_and_email
   print ' - What is your github author email?: '
   email = STDIN.gets.chomp
   return name, email
+end
+
+# Vim configuration
+def install_vim_plugins
+  backup_file("vim", nil, "#{ENV['HOME']}/.vim")
+  run %{ bash vim/install_plugins.sh }
 end
 
 # File operation helpers
