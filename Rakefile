@@ -6,9 +6,7 @@ namespace :install do
   end
 
   task :oh_my_zsh do
-    if !File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
-      run %{ git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"}
-    end
+    run %{ bash zsh/install_plugins.sh }
   end
 
   task :binaries do
