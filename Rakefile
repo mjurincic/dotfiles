@@ -1,38 +1,73 @@
 require 'rake'
 
+desc 'Run everything'
+task :setup do
+  Rake::Task["install"].invoke
+  Rake::Task["configure"].invoke
+end
+
+desc 'Run all install tasks'
+task :install do
+  Rake::Task["install:binaries"].invoke
+  Rake::Task["install:homebrew"].invoke
+  Rake::Task["install:oh_my_zsh"].invoke
+end
+
+desc 'Run all configuration tasks'
+task :configure do
+  Rake::Task["configure:git"].invoke
+  Rake::Task["configure:osx"].invoke
+  Rake::Task["configure:tmux"].invoke
+  Rake::Task["configure:vim"].invoke
+  Rake::Task["configure:zsh"].invoke
+end
+
 namespace :install do
+  desc 'Install homebrew and useful packages'
   task :homebrew do
     run %{ bash homebrew/install.sh }
   end
 
+  desc 'Install oh my zsh, pure prompt and syntax highlighter'
   task :oh_my_zsh do
-    run %{ bash zsh/install_plugins.sh }
+    run %{ bash zsh/script/install_plugins.sh }
   end
 
+  desc 'Copy binaries to home folder'
   task :binaries do
     run %{ cp -Pa bin/. #{ENV["HOME"]}/.bin/ }
   end
 end
 
 namespace :configure do
+  desc 'Configure git related dotfiles'
+  task :git do
+    link_files(files_in_folder('git/*'))
+    configure_git_user
+  end
+
+  desc 'Configure OSX (run once)'
   task :osx do
     if RUBY_PLATFORM.downcase.include?("darwin")
       run %{ bash osx/osx.sh }
     end
   end
 
-  task :git do
-    link_files(Dir['git/*'])
-    configure_git_user
-  end
-
+  desc 'Configure TMUX'
   task :tmux do
-    link_files(Dir['tmux/*'])
+    link_files(files_in_folder('tmux/*'))
   end
 
+  desc 'Configure Vim with Vundler and plugins'
   task :vim do
-    link_files(Dir['vim/vimrc'])
+    link_files(files_in_folder('vim/*'))
     install_vim_plugins
+  end
+
+  desc 'Configure ZSH and bootstrap aliases, functions, etc'
+  task :zsh do
+    switch_to_zsh
+    cp_files(files_in_folder('zsh/*'))
   end
 end
 
@@ -62,7 +97,7 @@ end
 # Vim configuration
 def install_vim_plugins
   backup_file("vim", nil, "#{ENV['HOME']}/.vim")
-  run %{ bash vim/install_plugins.sh }
+  run %{ bash vim/script/install_plugins.sh }
 end
 
 # Zsh/bash switching
@@ -90,12 +125,24 @@ def backup_file(file, source, target)
   end
 end
 
+def cp_files(files)
+  files.each { |file| cp_file(file) }
+end
+
+def cp_file(file)
+  file_operation(file, :copy)
+end
+
 def link_file(file)
   file_operation(file, :symlink)
 end
 
 def link_files(files)
   files.each { |file| link_file(file) }
+end
+
+def files_in_folder(folder)
+  Dir[folder].select { |f| File.file?(f) }
 end
 
 def proceed?(action)
