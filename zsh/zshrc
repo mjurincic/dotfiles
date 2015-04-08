@@ -23,6 +23,6 @@ export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # load pure prompt
-fpath=("$HOME/.bin" $fpath)
+fpath=("$HOME/.zfunctions" $fpath)
 autoload -U promptinit && promptinit
 prompt pure
