@@ -9,7 +9,7 @@ for file in ~/.{exports,aliases,functions,extra}; do
 done;
 unset file;
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/.bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.bin"
 
 # Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -23,5 +23,6 @@ export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # load pure prompt
+fpath=("$HOME/.bin" $fpath)
 autoload -U promptinit && promptinit
 prompt pure
