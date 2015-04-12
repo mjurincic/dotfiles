@@ -19,8 +19,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # nvm
-export NVM_DIR="~/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if [ -f ~/.nvm/nvm.sh ]; then source ~/.nvm/nvm.sh; fi
 
 # load pure prompt
 fpath=("$HOME/.zfunctions" $fpath)
