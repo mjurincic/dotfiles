@@ -46,9 +46,9 @@ All the changes will try to backup a copy of your original configuration but in 
 
 - I prefer `zsh` over `bash` so if you configure it your prompt will change.
 - If you install *oh my zsh* you'll also get the neat prompt [Pure](https://github.com/sindresorhus/pure) by Sindre Sorhus.
-- I encourage you to change the config files to your needs, specially the `osx.sh` script, which is grabbed from awesome [Mathias Bynens dotfiles])(https://github.com/mathiasbynens/dotfiles).
-- The OSX script will install in your iTerm2 the theme [Solarized][http://ethanschoonover.com/solarized] and the font Monaco, but you will have to select them from the settings. Also it will link your sublime to a `subl` command.
-- If you install Brew you'll get a bunch of useful packages which can take a while.
+- I encourage you to change the config files to your needs, specially the `osx.sh` script, which is grabbed from awesome [Mathias Bynens dotfiles](https://github.com/mathiasbynens/dotfiles).
+- The OSX script will install in your iTerm2 the theme [Solarized](http://ethanschoonover.com/solarized) and the font Monaco, but you will have to select them from the settings. Also it will link your sublime to a `subl` command.
+- If you install Brew you'll get a bunch of useful packages which can take a while in install.
 
 ## Attributions
 
