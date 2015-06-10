@@ -140,4 +140,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-alias mongod_rpl='ulimit -n 2048 && mongod --dbpath /usr/local/var/mongodb/ --replSet "rs0"'
+# Socialbro service alias
+alias mongod-replica='ulimit -n 2048 && sudo mongod --replSet "rs0"'
+alias solr="/usr/local/var/solr/solr-4.10.2/bin/solr start -f -s /usr/local/var/solr/solr-4.10.2/socialbro/solr/"
