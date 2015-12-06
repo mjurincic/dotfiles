@@ -6,6 +6,11 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/tComment'
 Plugin 'kana/vim-fakeclip'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
@@ -37,17 +42,16 @@ set statusline+=Line:%l/%L[%p%%]
 set statusline+=Col:%v
 set statusline+=Buf:#%n
 
-
 " MAPPINGS
 let mapleader="\\"
 
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
-" find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 " tab selected text
 vmap tl <gv
@@ -120,7 +124,6 @@ set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
 
 " Scheme
-execute pathogen#infect()
 syntax enable
 set background=light
 set t_ut=
@@ -157,3 +160,5 @@ set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
 
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
+
+let g:syntastic_javascript_checkers = ['eslint']
