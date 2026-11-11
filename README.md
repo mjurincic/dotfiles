@@ -47,7 +47,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `Brewfile` | List of CLI tools (`brew`), apps (`cask`) and App Store apps (`mas`). Not copied to `~`. |
 | `run_before_00-0-sudo-keepalive.sh` | Asks for the password once and keeps sudo alive while chezmoi runs. Nothing is stored. |
 | `run_once_before_00-install-homebrew.sh` | Installs Homebrew if it's missing. |
-| `run_onchange_before_10-brew-bundle.sh.tmpl` | Runs `brew bundle` whenever the Brewfile changes. |
+| `run_onchange_after_10-brew-bundle.sh.tmpl` | Runs `brew bundle` whenever the Brewfile changes. |
 | `run_onchange_after_20-mise-install.sh.tmpl` | Runs `mise install` whenever the mise config changes. |
 | `dot_zshrc` | `~/.zshrc`: Homebrew, mise, starship prompt, zoxide, fzf, aliases, `ws` (open in WebStorm). |
 | `dot_config/mise/config.toml` | `~/.config/mise/config.toml`: global Node, Python, pnpm and npm tools. |

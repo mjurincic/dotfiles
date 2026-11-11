@@ -51,8 +51,8 @@ mas "Xcode", id: 497799835   # large download (~15 GB); comment out if you do no
 
 # ---------- Mac App Store: personal (delete what you don't want on this machine) ----------
 mas "1Password for Safari", id: 1569813296
-mas "Perplexity", id: 6714467650
+#mas "Perplexity", id: 6714467650
 mas "Telegram", id: 747648890
 mas "WhatsApp", id: 310633997
 mas "Infuse", id: 1136220934
-mas "MacFamilyTree 10", id: 1567970985
+#mas "MacFamilyTree 10", id: 1567970985
