@@ -56,6 +56,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `dot_gitconfig-work.tmpl` | `~/.gitconfig-work`: work identity and key, used for repos under `~/work/`. |
 | `dot_config/swiftbar/` | Menu bar weather from yr.no (MET Norway) with a "what to wear" hint. Uses your location if allowed, otherwise Trondheim. |
 | `run_once_after_30-swiftbar.sh` | Points SwiftBar at `~/.config/swiftbar` and starts it. |
+| `run_onchange_after_40-chrome-extensions.sh` | Asks Chrome to install extensions (currently 1Password). Chrome asks you to enable each once. To add one, add its Web Store ID to the list. |
 | `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent) and the two **public** GitHub keys (filled in from your answers at init). |
 
 ## How things work
