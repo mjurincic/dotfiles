@@ -1,0 +1,15 @@
+{{- /* Asked once on `chezmoi init`, stored only in ~/.config/chezmoi/chezmoi.toml on this Mac, never in this repo. */ -}}
+{{- $name := promptStringOnce . "name" "Your name for git commits" -}}
+{{- $email := promptStringOnce . "email" "Personal GitHub commit email (tip: your GitHub noreply address)" -}}
+{{- $sshKey := promptStringOnce . "sshKey" "Personal GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{- $workEmail := promptStringOnce . "workEmail" "Work GitHub commit email, or leave empty to skip the work account" -}}
+{{- $workSshKey := "" -}}
+{{- if $workEmail -}}
+{{-   $workSshKey = promptStringOnce . "workSshKey" "Work GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{- end -}}
+[data]
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+  sshKey = {{ $sshKey | quote }}
+  workEmail = {{ $workEmail | quote }}
+  workSshKey = {{ $workSshKey | quote }}

@@ -1,0 +1,7 @@
+Brewfile
+README.md
+LICENSE
+{{- if not .workEmail }}
+.gitconfig-work
+.ssh/github_work.pub
+{{- end }}

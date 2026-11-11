@@ -1,0 +1,14 @@
+.idea/
+.DS_Store
+# Guardrails: never commit private keys or secrets to this public repo
+*id_rsa*
+*id_ed25519*
+*id_ecdsa*
+!*.pub
+*.pem
+*.key
+*.p12
+.env
+.env.*
+*secret*
+*token*
