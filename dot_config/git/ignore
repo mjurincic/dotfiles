@@ -1,0 +1,29 @@
+# Global gitignore: applies to every repo on this Mac (git reads ~/.config/git/ignore by default).
+# Only machine and editor clutter here; project-specific rules belong in each repo's .gitignore.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Editors and IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*~
+
+# Local secrets and env files
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Tool caches and logs
+.direnv/
+*.log
+npm-debug.log*
+.claude/settings.local.json

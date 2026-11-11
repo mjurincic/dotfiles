@@ -52,6 +52,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `run_onchange_after_20-mise-install.sh.tmpl` | Runs `mise install` whenever the mise config changes. |
 | `dot_zshrc` | `~/.zshrc`: Homebrew, mise, starship prompt, zoxide, fzf, aliases, `ws` (open in WebStorm). |
 | `dot_config/mise/config.toml` | `~/.config/mise/config.toml`: global Node, Python, pnpm and npm tools. |
+| `dot_config/git/ignore` | Global gitignore for every repo: `.DS_Store`, `.idea/`, local `.vscode` files, `.env` files (but not `.env.example`), logs. |
 | `dot_gitconfig.tmpl` | `~/.gitconfig`: personal identity and key (default). |
 | `.chezmoi.toml.tmpl` | Asks for your name, emails and public SSH keys once at `chezmoi init`, so nothing personal is in this repo. |
 | `dot_gitconfig-work.tmpl` | `~/.gitconfig-work`: work identity and key, used for repos under `~/work/`. |
