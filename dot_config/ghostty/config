@@ -1,0 +1,21 @@
+# Ghostty terminal. Reload with ⌘⇧, after editing. Check with: ghostty +validate-config
+
+# Font (installed by the Brewfile; Nerd Font icons are used by the Starship prompt)
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+# Light theme by day, dark at night, following macOS. List themes: ghostty +list-themes
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+
+# Look and feel
+window-padding-x = 10
+window-padding-y = 8
+cursor-style = bar
+copy-on-select = clipboard
+window-save-state = always
+
+# Keep Option as Option: the Norwegian layout needs it for @ $ { } [ ] |
+macos-option-as-alt = false
+
+# Drop-down terminal from any app (asks for Accessibility permission once)
+keybind = global:alt+space=toggle_quick_terminal

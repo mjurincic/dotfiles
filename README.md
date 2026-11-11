@@ -53,6 +53,8 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `dot_zshrc` | `~/.zshrc`: Homebrew, mise, starship prompt, zoxide, fzf, aliases, `ws` (open in WebStorm). |
 | `dot_config/mise/config.toml` | `~/.config/mise/config.toml`: global Node, Python, pnpm and npm tools. |
 | `dot_config/git/ignore` | Global gitignore for every repo: `.DS_Store`, `.idea/`, local `.vscode` files, `.env` files (but not `.env.example`), logs. |
+| `dot_config/ghostty/config` | Ghostty: JetBrains Mono Nerd Font 14, Catppuccin light/dark following macOS, bar cursor, copy on select, restores windows, drop-down terminal on ⌥Space. Option stays Option (Norwegian keys). |
+| `dot_config/starship.toml` | Starship prompt: folder, git, Node/Python version in projects, time for commands over 2 s; no cloud noise. |
 | `dot_gitconfig.tmpl` | `~/.gitconfig`: personal identity and key (default). |
 | `.chezmoi.toml.tmpl` | Asks for your name, emails and public SSH keys once at `chezmoi init`, so nothing personal is in this repo. |
 | `dot_gitconfig-work.tmpl` | `~/.gitconfig-work`: work identity and key, used for repos under `~/work/`. |

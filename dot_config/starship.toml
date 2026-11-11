@@ -1,0 +1,17 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# One clean line: folder, git, Node/Python (only in projects that use them), slow-command time.
+# Modules not listed here (AWS, Google Cloud, Docker context, ...) never show.
+add_newline = true
+format = "$directory$git_branch$git_state$git_status$nodejs$python$cmd_duration$character"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration]($style) "
+
+[python]
+format = 'via [${symbol}${version}( \($virtualenv\))]($style) '
