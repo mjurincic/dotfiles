@@ -36,15 +36,16 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
    ssh -T -i ~/.ssh/github_personal.pub -o IdentitiesOnly=yes git@github.com
    ssh -T -i ~/.ssh/github_work.pub -o IdentitiesOnly=yes git@github.com
    ```
-4. Open these apps once to sign in or activate them (licenses are in 1Password):
+4. Commits are signed with your SSH keys through 1Password. Add each public key to GitHub a second time as a **Signing Key** (GitHub → Settings → SSH and GPG keys → New SSH key → Key type: Signing Key), on both accounts, so commits show as Verified.
+5. Open these apps once to sign in or activate them (licenses are in 1Password):
    WebStorm (JetBrains account), CleanShot X, Bartender, OrbStack, Raycast, Slack, Figma, Claude, SwiftBar.
-5. `mkdir -p ~/work`: work repos go here (see Git below).
+6. `mkdir -p ~/work`: work repos go here (see Git below).
 
 ## What's in here
 
 | File | Becomes / does |
 |---|---|
-| `Brewfile` | List of CLI tools (`brew`), apps (`cask`) and App Store apps (`mas`). Not copied to `~`. |
+| `Brewfile` | List of CLI tools (`brew`), apps (`cask`), App Store apps (`mas`) and VS Code extensions (`vscode`). Not copied to `~`. |
 | `run_before_00-0-sudo-keepalive.sh` | Asks for the password once and keeps sudo alive while chezmoi runs. Nothing is stored. |
 | `run_once_before_00-install-homebrew.sh` | Installs Homebrew if it's missing. |
 | `run_onchange_after_10-brew-bundle.sh.tmpl` | Runs `brew bundle` whenever the Brewfile changes. |
@@ -60,7 +61,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `run_onchange_after_50-macos-defaults.sh` | macOS settings: natural scrolling off, tap to click, fast key repeat, no autocorrect or smart quotes, Finder shows extensions and path bar, auto-hiding Dock without recents, expanded save dialogs, shorter animations, no click-wallpaper-to-show-desktop, no gaps around tiled windows, ⌘Space freed for Raycast. Each line is commented; edit and re-run `chezmoi apply`. |
 | `run_onchange_after_55-dock.sh` | A minimal Dock (with `dockutil`): Chrome, Ghostty, WebStorm, VS Code, Claude, Slack, and Downloads. Edit the list and re-run `chezmoi apply`. |
 | `run_onchange_after_60-touchid-sudo.sh` | Touch ID for `sudo`, via `/etc/pam.d/sudo_local` (survives macOS updates). |
-| `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent) and the two **public** GitHub keys (filled in from your answers at init). |
+| `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent), the two **public** GitHub keys, and `allowed_signers` for verifying signed commits (filled in from your answers at init). |
 
 ## How things work
 

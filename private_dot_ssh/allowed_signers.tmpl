@@ -1,0 +1,4 @@
+{{ .email }} {{ .sshKey }}
+{{- if .workEmail }}
+{{ .workEmail }} {{ .workSshKey }}
+{{- end }}

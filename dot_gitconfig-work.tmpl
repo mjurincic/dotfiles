@@ -1,5 +1,6 @@
 [user]
   email = {{ .workEmail }}
+  signingkey = ~/.ssh/github_work.pub
 
 [core]
   sshCommand = ssh -i ~/.ssh/github_work.pub -o IdentitiesOnly=yes

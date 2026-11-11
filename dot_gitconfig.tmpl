@@ -3,6 +3,8 @@
   email = {{ .email }}
   # Refuse to commit with a guessed name/email (e.g. you@Mac.local)
   useConfigOnly = true
+  # Sign commits with your personal SSH key (via 1Password)
+  signingkey = ~/.ssh/github_personal.pub
 
 [core]
   # Personal GitHub key by default; 1Password picks the private key matching this public key
@@ -15,6 +17,21 @@
 
 [delta]
   navigate = true
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  # 1Password signs with the private key matching user.signingkey (Touch ID prompt)
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+  # Lets `git log --show-signature` verify your own commits locally
+  allowedSignersFile = ~/.ssh/allowed_signers
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
 
 [init]
   defaultBranch = main

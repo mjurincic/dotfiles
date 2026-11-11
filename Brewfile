@@ -57,3 +57,14 @@ mas "Telegram", id: 747648890
 mas "WhatsApp", id: 310633997
 mas "Infuse", id: 1136220934
 #mas "MacFamilyTree 10", id: 1567970985
+
+# ---------- VS Code extensions (installed by brew bundle; list yours with: code --list-extensions) ----------
+vscode "anthropic.claude-code"            # Claude Code in the editor
+vscode "dbaeumer.vscode-eslint"
+vscode "esbenp.prettier-vscode"
+vscode "editorconfig.editorconfig"
+vscode "ms-python.python"
+vscode "charliermarsh.ruff"               # Python lint/format
+vscode "timonwong.shellcheck"
+vscode "tamasfe.even-better-toml"
+vscode "redhat.vscode-yaml"
