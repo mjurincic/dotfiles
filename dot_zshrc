@@ -1,0 +1,31 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Runtimes (node, python, pnpm...) via mise
+eval "$(mise activate zsh)"
+
+# Prompt, smarter cd, fuzzy history (Ctrl-R)
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+source <(fzf --zsh)
+
+# History
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE   # start a command with a space to keep it out of history
+
+# Aliases
+alias ls="eza"
+alias ll="eza -la --git"
+alias cat="bat --paging=never"
+alias lg="lazygit"
+
+# Open files/folders in editors from the terminal
+#   code .        -> VS Code (the cask installs the `code` command)
+#   ws .          -> WebStorm, e.g. `ws src/index.ts` or `ws .`
+ws() {
+  local a; local -a paths=()
+  for a in "${@:-.}"; do paths+=("${a:A}"); done   # absolute paths, since `open` does not keep your cwd
+  open -na "WebStorm.app" --args "${paths[@]}"
+}
+export EDITOR="code --wait"   # used by git commit, chezmoi edit, etc.

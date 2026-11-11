@@ -1,0 +1,30 @@
+[user]
+  name = {{ .name }}
+  email = {{ .email }}
+  # Refuse to commit with a guessed name/email (e.g. you@Mac.local)
+  useConfigOnly = true
+
+[core]
+  # Personal GitHub key by default; 1Password picks the private key matching this public key
+  sshCommand = ssh -i ~/.ssh/github_personal.pub -o IdentitiesOnly=yes
+  pager = delta
+  autocrlf = input
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+
+[init]
+  defaultBranch = main
+
+[push]
+  autoSetupRemote = true
+
+{{- if .workEmail }}
+
+# Repos under ~/work/ use the work email and work key
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
+{{- end }}

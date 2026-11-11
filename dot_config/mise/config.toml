@@ -1,0 +1,11 @@
+# Global runtimes and tools. Projects can override with their own mise.toml.
+[tools]
+node = "lts"
+python = "3.12"
+pnpm = "latest"
+"npm:i18nexus-cli" = "latest"
+
+[settings]
+experimental = true
+# Read .nvmrc / .node-version and .python-version files in projects
+idiomatic_version_file_enable_tools = ["node", "python"]
