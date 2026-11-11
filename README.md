@@ -57,7 +57,9 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `dot_config/swiftbar/` | Menu bar weather from yr.no (MET Norway) with a "what to wear" hint. Uses your location if allowed, otherwise Trondheim. |
 | `run_once_after_30-swiftbar.sh` | Points SwiftBar at `~/.config/swiftbar` and starts it. |
 | `run_onchange_after_40-chrome-extensions.sh` | Asks Chrome to install extensions (currently 1Password). Chrome asks you to enable each once. To add one, add its Web Store ID to the list. |
-| `run_onchange_after_50-macos-defaults.sh` | macOS settings: natural scrolling off, tap to click, fast key repeat, no autocorrect or smart quotes, Finder shows extensions and path bar, auto-hiding Dock without recents, expanded save dialogs. Each line is commented; edit and re-run `chezmoi apply`. |
+| `run_onchange_after_50-macos-defaults.sh` | macOS settings: natural scrolling off, tap to click, fast key repeat, no autocorrect or smart quotes, Finder shows extensions and path bar, auto-hiding Dock without recents, expanded save dialogs, shorter animations, no click-wallpaper-to-show-desktop, no gaps around tiled windows, ⌘Space freed for Raycast. Each line is commented; edit and re-run `chezmoi apply`. |
+| `run_onchange_after_55-dock.sh` | A minimal Dock (with `dockutil`): Chrome, Ghostty, WebStorm, VS Code, Claude, Slack, and Downloads. Edit the list and re-run `chezmoi apply`. |
+| `run_onchange_after_60-touchid-sudo.sh` | Touch ID for `sudo`, via `/etc/pam.d/sudo_local` (survives macOS updates). |
 | `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent) and the two **public** GitHub keys (filled in from your answers at init). |
 
 ## How things work

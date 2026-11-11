@@ -45,5 +45,20 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false           # save to disk, not iCloud, by default
 
+# --- Speed: shorter animations ---
+defaults write com.apple.dock autohide-time-modifier -float 0.15                      # quick Dock show/hide
+defaults write com.apple.dock expose-animation-duration -float 0.1                    # quick Mission Control
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false          # no window open animation
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001                         # instant dialog resize
+
+# --- Window management ---
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false   # clicking wallpaper doesn't hide windows
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false           # no gaps around tiled windows
+
+# --- Free ⌘Space for Raycast (turns off the Spotlight shortcut; set ⌘Space in Raycast's settings) ---
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+  "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u 2>/dev/null || true
+
 killall Finder Dock SystemUIServer 2>/dev/null || true
 echo "macOS defaults applied. Log out and back in for scrolling and keyboard changes."

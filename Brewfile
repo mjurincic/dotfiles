@@ -21,6 +21,7 @@ brew "tlrc"            # tldr pages: short command examples
 brew "shellcheck"      # lint shell scripts
 brew "gnupg"           # commit signing (optional)
 brew "uv"              # fast Python package/venv tool
+brew "dockutil"        # sets up the Dock (run_onchange_after_55-dock.sh)
 
 # ---------- Project tooling you already use ----------
 brew "ffmpeg"
