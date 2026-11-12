@@ -29,6 +29,7 @@ brew "yt-dlp"
 
 # ---------- GUI apps (casks) ----------
 cask "ghostty"                # terminal (or "iterm2")
+# Rex (Superlogical): terminal multiplexer, beta download only, no cask yet. Install by hand; swap in its cask when one exists.
 cask "visual-studio-code"     # or "cursor" / "zed"
 cask "webstorm"               # JetBrains IDE; open from terminal with: ws .
 cask "claude-code"            # Claude Code CLI (`claude` in the terminal)
@@ -36,6 +37,7 @@ cask "claude"                 # Claude desktop app (includes Claude Code desktop
 cask "orbstack"               # Docker and Linux VMs, lighter than Docker Desktop
 cask "1password"
 cask "1password-cli"          # `op`: secrets in scripts and chezmoi templates
+cask "bitwarden"              # work password manager (OptoScale); Chrome extension: install by hand in the work profile
 cask "little-snitch"          # outbound firewall: asks before apps connect out (license: 1Password)
 cask "raycast"                # launcher, clipboard history, snippets
 cask "cleanshot"               # screenshots and screen recording (license: paste from 1Password)

@@ -39,7 +39,8 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 4. Commits are signed with your SSH keys through 1Password. Add each public key to GitHub a second time as a **Signing Key** (GitHub → Settings → SSH and GPG keys → New SSH key → Key type: Signing Key), on both accounts, so commits show as Verified.
 5. Open these apps once to sign in or activate them (licenses are in 1Password):
    WebStorm (JetBrains account), CleanShot X, Bartender, OrbStack, Raycast, Slack, Figma, Claude, SwiftBar, Little Snitch (approve its network extension when macOS asks).
-6. `mkdir -p ~/work`: work repos go here (see Git below).
+6. Install Rex (Superlogical's terminal multiplexer) by hand from your beta invite email; it has no Homebrew cask yet.
+7. `mkdir -p ~/work`: work repos go here (see Git below).
 
 ## What's in here
 
@@ -82,6 +83,7 @@ Check which one a repo uses: `git config user.email`.
 - Sign in to the OptoScale account with **Continue with Google** from the work Chrome profile, so no GitHub password is needed there.
 - Optional: add a **passkey** to each GitHub account (saved in 1Password). It doesn't help pick the account, since 1Password still asks which one, but it makes signing in faster: no password or 2FA code.
 - Name the items clearly, such as `GitHub · personal`, `GitHub · togg` and `GitHub · OptoScale`.
+- Work passwords live in **Bitwarden** (the company's manager), personal ones in 1Password. Use Bitwarden only in the work Chrome profile: install its extension by hand there from the Chrome Web Store, and turn off the 1Password extension in that profile (chrome://extensions). The personal profile keeps 1Password only. The Bitwarden desktop app comes from the Brewfile.
 
 **Menu bar weather.** SwiftBar runs `~/.config/swiftbar/yr-weather.10m.sh` every 10 minutes. To use your exact location, run `CoreLocationCLI` once in Terminal and allow Location access; otherwise it shows Trondheim (change `FALLBACK_*` at the top of the script).
 
