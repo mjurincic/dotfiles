@@ -38,7 +38,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
    ```
 4. Commits are signed with your SSH keys through 1Password. Add each public key to GitHub a second time as a **Signing Key** (GitHub → Settings → SSH and GPG keys → New SSH key → Key type: Signing Key), on both accounts, so commits show as Verified.
 5. Open these apps once to sign in or activate them (licenses are in 1Password):
-   WebStorm (JetBrains account), CleanShot X, Bartender, OrbStack, Raycast, Slack, Figma, Claude, SwiftBar.
+   WebStorm (JetBrains account), CleanShot X, Bartender, OrbStack, Raycast, Slack, Figma, Claude, SwiftBar, Little Snitch (approve its network extension when macOS asks).
 6. `mkdir -p ~/work`: work repos go here (see Git below).
 
 ## What's in here
@@ -64,6 +64,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `run_onchange_after_50-macos-defaults.sh` | macOS settings: natural scrolling off, tap to click, fast key repeat, no autocorrect or smart quotes, Finder shows extensions and path bar, auto-hiding Dock without recents, expanded save dialogs, shorter animations, no click-wallpaper-to-show-desktop, no gaps around tiled windows, ⌘Space freed for Raycast. Each line is commented; edit and re-run `chezmoi apply`. |
 | `run_onchange_after_55-dock.sh` | A minimal Dock (with `dockutil`): Chrome, Ghostty, WebStorm, VS Code, Claude, Slack, and Downloads. Edit the list and re-run `chezmoi apply`. |
 | `run_onchange_after_60-touchid-sudo.sh` | Touch ID for `sudo`, via `/etc/pam.d/sudo_local` (survives macOS updates). |
+| `run_onchange_after_70-security.sh` | Checks FileVault, Gatekeeper, System Integrity Protection and Little Snitch, and warns if any is off. Changes nothing. |
 | `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent), the two **public** GitHub keys, and `allowed_signers` for verifying signed commits (filled in from your answers at init). |
 
 ## How things work

@@ -36,6 +36,7 @@ cask "claude"                 # Claude desktop app (includes Claude Code desktop
 cask "orbstack"               # Docker and Linux VMs, lighter than Docker Desktop
 cask "1password"
 cask "1password-cli"          # `op`: secrets in scripts and chezmoi templates
+cask "little-snitch"          # outbound firewall: asks before apps connect out (license: 1Password)
 cask "raycast"                # launcher, clipboard history, snippets
 cask "cleanshot"               # screenshots and screen recording (license: paste from 1Password)
 cask "bartender"              # menu bar organizer (license: activate in app)
