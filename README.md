@@ -77,6 +77,12 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 
 Check which one a repo uses: `git config user.email`.
 
+**GitHub logins in the browser (1Password).** With several GitHub accounts (personal, togg, OptoScale), 1Password offers all of them on github.com. To make it pick the right one:
+- Keep separate **Work** and **Personal** vaults. In the work Chrome profile, limit the 1Password extension to the Work vault, if your 1Password version offers that.
+- Sign in to the OptoScale account with **Continue with Google** from the work Chrome profile, so no GitHub password is needed there.
+- Optional: add a **passkey** to each GitHub account (saved in 1Password). It doesn't help pick the account, since 1Password still asks which one, but it makes signing in faster: no password or 2FA code.
+- Name the items clearly, such as `GitHub · personal`, `GitHub · togg` and `GitHub · OptoScale`.
+
 **Menu bar weather.** SwiftBar runs `~/.config/swiftbar/yr-weather.10m.sh` every 10 minutes. To use your exact location, run `CoreLocationCLI` once in Terminal and allow Location access; otherwise it shows Trondheim (change `FALLBACK_*` at the top of the script).
 
 **Terminal shortcuts.** `code .` opens VS Code, `ws .` opens WebStorm, `lg` opens lazygit, `z <dir>` jumps to a folder you've visited, Ctrl-R searches history.
@@ -92,7 +98,8 @@ Check which one a repo uses: `git config user.email`.
 | Preview changes | `chezmoi diff` |
 | Save to GitHub | `chezmoi git add .` then `chezmoi git -- commit -m "…"` then `chezmoi git push` |
 | Pull changes on another Mac | `chezmoi update` |
-| Remove apps not in the Brewfile | `brew bundle cleanup --file="$(chezmoi source-path)/Brewfile"` (add `--force` to actually remove) |
+| Compare this Mac with the Brewfile | `brewsync` (only lists) |
+| Remove apps not in the Brewfile | `brewprune` (asks first) |
 
 ## Never commit
 
