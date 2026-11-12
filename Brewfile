@@ -65,6 +65,9 @@ vscode "dbaeumer.vscode-eslint"
 vscode "esbenp.prettier-vscode"
 vscode "editorconfig.editorconfig"
 vscode "ms-python.python"
+vscode "ms-python.debugpy"               # installed along with the Python extension
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
 vscode "charliermarsh.ruff"               # Python lint/format
 vscode "timonwong.shellcheck"
 vscode "tamasfe.even-better-toml"

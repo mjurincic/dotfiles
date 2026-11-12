@@ -50,7 +50,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `run_once_before_00-install-homebrew.sh` | Installs Homebrew if it's missing. |
 | `run_onchange_after_10-brew-bundle.sh.tmpl` | Runs `brew bundle` whenever the Brewfile changes. |
 | `run_onchange_after_20-mise-install.sh.tmpl` | Runs `mise install` whenever the mise config changes. |
-| `dot_zshrc` | `~/.zshrc`: Homebrew, mise, starship prompt, zoxide, fzf, aliases, `ws` (open in WebStorm). |
+| `dot_zshrc` | `~/.zshrc`: Homebrew, mise, starship prompt, zoxide, fzf, aliases, `ws` (open in WebStorm), `brewsync` / `brewprune` (compare this Mac with the Brewfile). |
 | `dot_config/mise/config.toml` | `~/.config/mise/config.toml`: global Node, Python, pnpm and npm tools. |
 | `dot_config/git/ignore` | Global gitignore for every repo: `.DS_Store`, `.idea/`, local `.vscode` files, `.env` files (but not `.env.example`), logs. |
 | `dot_config/ghostty/config` | Ghostty: JetBrains Mono Nerd Font 14, Catppuccin light/dark following macOS, bar cursor, copy on select, restores windows, drop-down terminal on ⌥Space. Option stays Option (Norwegian keys). |

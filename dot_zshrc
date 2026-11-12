@@ -29,3 +29,20 @@ ws() {
   open -na "WebStorm.app" --args "${paths[@]}"
 }
 export EDITOR="code --wait"   # used by git commit, chezmoi edit, etc.
+
+# Keep this Mac and the Brewfile in sync
+#   brewsync  -> list what's installed but not in the Brewfile, and what's in it but missing (changes nothing)
+#   brewprune -> uninstall everything not in the Brewfile (asks first)
+brewsync() {
+  local bf="$(chezmoi source-path)/Brewfile"
+  echo "== Installed but not in the Brewfile =="
+  echo n | brew bundle cleanup --file="$bf" || true   # "n": only list, never remove
+  echo "\n== In the Brewfile but not installed =="
+  brew bundle check --verbose --no-upgrade --file="$bf" || true
+}
+brewprune() {
+  local bf="$(chezmoi source-path)/Brewfile"
+  if echo n | brew bundle cleanup --file="$bf"; then echo "Nothing to remove."; return; fi
+  read -q "?Uninstall everything listed above? [y/N] " && echo && brew bundle cleanup --force --file="$bf"
+  echo
+}
