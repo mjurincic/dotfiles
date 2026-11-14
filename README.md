@@ -67,6 +67,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `run_onchange_after_60-touchid-sudo.sh` | Touch ID for `sudo`, via `/etc/pam.d/sudo_local` (survives macOS updates). |
 | `run_onchange_after_70-security.sh` | Checks FileVault, Gatekeeper, System Integrity Protection and Little Snitch, and warns if any is off. Changes nothing. |
 | `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent), the two **public** GitHub keys, and `allowed_signers` for verifying signed commits (filled in from your answers at init). |
+| `test/`, `.github/workflows/` | Tests a fresh install in a throwaway macOS VM (`test/vm-test.sh`) or on a GitHub-hosted Mac. Not copied to `~`. See [test/README.md](test/README.md). |
 
 ## How things work
 

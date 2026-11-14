@@ -1,11 +1,21 @@
 {{- /* Asked once on `chezmoi init`, stored only in ~/.config/chezmoi/chezmoi.toml on this Mac, never in this repo. */ -}}
-{{- $name := promptStringOnce . "name" "Your name for git commits" -}}
-{{- $email := promptStringOnce . "email" "Personal GitHub commit email (tip: your GitHub noreply address)" -}}
-{{- $sshKey := promptStringOnce . "sshKey" "Personal GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
-{{- $workEmail := promptStringOnce . "workEmail" "Work GitHub commit email, or leave empty to skip the work account" -}}
-{{- $workSshKey := "" -}}
-{{- if $workEmail -}}
-{{-   $workSshKey = promptStringOnce . "workSshKey" "Work GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{- /* Headless test runs (a throwaway VM or GitHub Actions, see test/README.md) set CHEZMOI_CI=1 or CI=true:
+       no questions are asked and placeholder values are used instead. */ -}}
+{{- $ci := ne (or (env "CHEZMOI_CI") (env "CI")) "" -}}
+{{- $name := "Dotfiles Test" -}}
+{{- $email := "test@example.com" -}}
+{{- $sshKey := "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlaceholderPersonalKeyForCITestsOnly test" -}}
+{{- $workEmail := "work@example.com" -}}
+{{- $workSshKey := "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlaceholderWorkKeyForCITestsOnlyxx test" -}}
+{{- if not $ci -}}
+{{-   $name = promptStringOnce . "name" "Your name for git commits" -}}
+{{-   $email = promptStringOnce . "email" "Personal GitHub commit email (tip: your GitHub noreply address)" -}}
+{{-   $sshKey = promptStringOnce . "sshKey" "Personal GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{-   $workEmail = promptStringOnce . "workEmail" "Work GitHub commit email, or leave empty to skip the work account" -}}
+{{-   $workSshKey = "" -}}
+{{-   if $workEmail -}}
+{{-     $workSshKey = promptStringOnce . "workSshKey" "Work GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{-   end -}}
 {{- end -}}
 [data]
   name = {{ $name | quote }}
@@ -13,3 +23,4 @@
   sshKey = {{ $sshKey | quote }}
   workEmail = {{ $workEmail | quote }}
   workSshKey = {{ $workSshKey | quote }}
+  ci = {{ $ci }}

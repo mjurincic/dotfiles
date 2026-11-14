@@ -1,6 +1,7 @@
 Brewfile
 README.md
 LICENSE
+test/
 {{- if not .workEmail }}
 .gitconfig-work
 .ssh/github_work.pub

@@ -1,0 +1,31 @@
+# Runs the README install (`chezmoi init --apply`) on a GitHub-hosted Mac, then test/smoke.sh.
+# Same idea as test/vm-test.sh, but in the cloud. See test/README.md.
+name: Fresh install
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  install:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    env:
+      CHEZMOI_CI: "1"                              # no questions, skip App Store apps (see .chezmoi.toml.tmpl)
+      HOMEBREW_BUNDLE_CASK_SKIP: google-chrome     # already on GitHub's Mac image; reinstalling it fails
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    # avoids GitHub API rate limits in mise and Homebrew
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Put this checkout where chezmoi looks for it
+        run: |
+          mkdir -p ~/.local/share/chezmoi
+          rsync -a --exclude .git ./ ~/.local/share/chezmoi/
+
+      - name: chezmoi init --apply
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply --use-builtin-git=true
+
+      - name: Smoke test
+        run: bash ~/.local/share/chezmoi/test/smoke.sh
