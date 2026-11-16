@@ -39,6 +39,7 @@ cask "1password"
 cask "1password-cli"          # `op`: secrets in scripts and chezmoi templates
 cask "bitwarden"              # work password manager (OptoScale); Chrome extension: install by hand in the work profile
 cask "little-snitch"          # outbound firewall: asks before apps connect out (license: 1Password)
+cask "nordvpn"                # VPN (sign in with the account in 1Password)
 cask "raycast"                # launcher, clipboard history, snippets
 cask "cleanshot"               # screenshots and screen recording (license: paste from 1Password)
 cask "bartender"              # menu bar organizer (license: activate in app)
