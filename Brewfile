@@ -48,6 +48,7 @@ cask "swiftbar"               # menu bar plugins (yr.no weather: ~/.config/swift
 cask "corelocationcli"        # lets the weather plugin find your location
 cask "figma"                  # design (not on the Mac App Store, so installed as a cask)
 cask "slack"                  # moved from the App Store (storefront error)
+cask "discord"                # chat
 cask "google-chrome"          # browser for dev tools testing
 cask "font-jetbrains-mono-nerd-font"
 
