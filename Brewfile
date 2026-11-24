@@ -46,6 +46,7 @@ cask "bartender"              # menu bar organizer (license: activate in app)
 cask "istat-menus"            # system stats in the menu bar (license: activate in app)
 cask "swiftbar"               # menu bar plugins (yr.no weather: ~/.config/swiftbar)
 cask "corelocationcli"        # lets the weather plugin find your location
+cask "obsidian"               # notes
 cask "figma"                  # design (not on the Mac App Store, so installed as a cask)
 cask "slack"                  # moved from the App Store (storefront error)
 cask "discord"                # chat
