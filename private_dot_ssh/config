@@ -1,3 +1,12 @@
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# This won't be added again if you remove it.
+Include ~/.orbstack/ssh/config
+
+# Private and work hosts go in ~/.ssh/config.local. It stays only on this Mac:
+# chezmoi doesn't track it (see .chezmoiignore).
+Include ~/.ssh/config.local
+
 # Use the 1Password SSH agent for everything (Settings → Developer → Use the SSH agent)
 Host *
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"

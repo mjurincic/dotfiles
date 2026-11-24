@@ -5,3 +5,6 @@ LICENSE
 .gitconfig-work
 .ssh/github_work.pub
 {{- end }}
+
+# private SSH hosts, local only
+.ssh/config.local
