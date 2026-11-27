@@ -40,7 +40,7 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 5. Open these apps once to sign in or activate them (licenses are in 1Password):
    WebStorm (JetBrains account), CleanShot X, Bartender, OrbStack, Raycast, Slack, Figma, Claude, SwiftBar, Little Snitch (approve its network extension when macOS asks).
 6. Install Rex (Superlogical's terminal multiplexer) by hand from your beta invite email; it has no Homebrew cask yet.
-7. `mkdir -p ~/work`: work repos go here (see Git below).
+7. Work repos go in `~/work`, a link to `/Users/Shared/Work/OptoScale` that `chezmoi apply` creates (see Shared work folder below).
 
 ## What's in here
 
@@ -58,13 +58,14 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 | `dot_config/starship.toml` | Starship prompt: folder, git, Node/Python version in projects, time for commands over 2 s; no cloud noise. |
 | `dot_gitconfig.tmpl` | `~/.gitconfig`: personal identity and key (default). |
 | `.chezmoi.toml.tmpl` | Asks for your name, emails and public SSH keys once at `chezmoi init`, so nothing personal is in this repo. |
-| `dot_gitconfig-work.tmpl` | `~/.gitconfig-work`: work identity and key, used for repos under `~/work/`. |
+| `dot_gitconfig-work.tmpl` | `~/.gitconfig-work`: work identity and key, used for repos under `~/work/` (`/Users/Shared/Work/OptoScale`). |
 | `dot_config/swiftbar/` | Menu bar weather from yr.no (MET Norway) with a "what to wear" hint. Uses your location if allowed, otherwise Trondheim. |
 | `run_once_after_30-swiftbar.sh` | Points SwiftBar at `~/.config/swiftbar` and starts it. |
 | `run_onchange_after_40-chrome-extensions.sh` | Asks Chrome to install extensions (currently 1Password). Chrome asks you to enable each once. To add one, add its Web Store ID to the list. |
 | `run_onchange_after_50-macos-defaults.sh` | macOS settings: natural scrolling off, tap to click, fast key repeat, no autocorrect or smart quotes, Finder shows extensions and path bar, auto-hiding Dock without recents, expanded save dialogs, shorter animations, no click-wallpaper-to-show-desktop, no gaps around tiled windows, ⌘Space freed for Raycast. Each line is commented; edit and re-run `chezmoi apply`. |
 | `run_onchange_after_55-dock.sh` | A minimal Dock (with `dockutil`): Chrome, Ghostty, WebStorm, VS Code, Claude, Slack, and Downloads. Edit the list and re-run `chezmoi apply`. |
 | `run_onchange_after_60-touchid-sudo.sh` | Touch ID for `sudo`, via `/etc/pam.d/sudo_local` (survives macOS updates). |
+| `run_after_65-shared-work.sh.tmpl` | Keeps `/Users/Shared/Work/OptoScale` owner-only, gives the work macOS account (`workUser`) access through an inheritable ACL once it exists, and links `~/work` to it. |
 | `run_onchange_after_70-security.sh` | Checks FileVault, Gatekeeper, System Integrity Protection and Little Snitch, and warns if any is off. Changes nothing. |
 | `private_dot_ssh/` | `~/.ssh/config` (1Password SSH agent), the two **public** GitHub keys, and `allowed_signers` for verifying signed commits (filled in from your answers at init). |
 
@@ -77,6 +78,13 @@ Replace `mjurincic` with your GitHub username if you forked this repo.
 - under `~/work/` → work account
 
 Check which one a repo uses: `git config user.email`.
+
+**Shared work folder.** Work files live in `/Users/Shared/Work/OptoScale` so a second macOS account for work (with Fast User Switching) can use them too; other clients can get sibling folders later. `/Users/Shared/Work` and everything in it is owner-only (`700`, no group or other access), so other people on this Mac can't open it. The work account gets in through an ACL that new files inherit, and so does the main account, so files either one creates stay usable by both. To set it up once the work account exists:
+1. Create the account (System Settings → Users & Groups) and note its short username (not an email).
+2. Put it in `~/.config/chezmoi/chezmoi.toml` as `workUser = "<name>"` under `[data]` (or run `chezmoi init` if it was never asked), then `chezmoi apply`.
+3. In the work account, install these dotfiles too: `chezmoi apply` there links its `~/work` to the same folder, and git there trusts the repos (`safe.directory`).
+
+Check it: `ls -led /Users/Shared/Work/OptoScale`. Admins with `sudo` can still read anything on the Mac.
 
 **GitHub logins in the browser (1Password).** With several GitHub accounts (personal, togg, OptoScale), 1Password offers all of them on github.com. To make it pick the right one:
 - Keep separate **Work** and **Personal** vaults. In the work Chrome profile, limit the 1Password extension to the Work vault, if your 1Password version offers that.

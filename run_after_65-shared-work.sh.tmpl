@@ -1,0 +1,56 @@
+#!/bin/bash
+# Work files live in /Users/Shared/Work/OptoScale, so a second macOS account
+# for work (Fast User Switching) can use them too. Only my accounts get in:
+#   - /Users/Shared/Work and everything below: owner-only (no group/other).
+#   - An inheritable ACL gives the owner and the work account full access to
+#     OptoScale, so files either account creates stay usable by both.
+#   - ~/work is a symlink to the OptoScale folder, so old paths keep working.
+# The work account is `workUser` in ~/.config/chezmoi/chezmoi.toml. It can be
+# set before the account exists; the ACL is added on the first apply after.
+# Runs on every apply and does nothing once all is in place. No sudo needed.
+set -euo pipefail
+
+ROOT=/Users/Shared/Work
+DIR=$ROOT/OptoScale
+WORK_USER={{ get . "workUser" | default "" | quote }}
+ME=$(id -un)
+
+FULL=list,add_file,search,delete,add_subdirectory,delete_child,readattr,writeattr,readextattr,writeextattr,readsecurity,file_inherit,directory_inherit
+TRAVERSE=list,search,readattr,readextattr,readsecurity
+
+has_ace() { /bin/ls -led "$2" | grep -q "user:$1 allow"; }
+
+if [ ! -e "$ROOT" ]; then
+  mkdir -p "$DIR"
+fi
+
+if [ "$(stat -f %Su "$ROOT")" = "$ME" ]; then
+  mkdir -p "$DIR"
+  chmod 700 "$ROOT" "$DIR"
+
+  # Owner's own inheritable entry, so files the work account creates stay mine too.
+  if ! has_ace "$ME" "$DIR"; then
+    echo "Locking down $ROOT (owner only) and adding an inheritable ACL for $ME..."
+    find "$ROOT" -user "$ME" -perm +077 ! -type l -exec chmod go-rwx {} +
+    chmod -R +a "user:$ME allow $FULL" "$DIR"
+  fi
+
+  if [ -n "$WORK_USER" ]; then
+    if id -u "$WORK_USER" >/dev/null 2>&1; then
+      if ! has_ace "$WORK_USER" "$DIR"; then
+        echo "Giving the work account '$WORK_USER' access to $DIR..."
+        chmod +a "user:$WORK_USER allow $TRAVERSE" "$ROOT"
+        chmod -R +a "user:$WORK_USER allow $FULL" "$DIR"
+      fi
+    else
+      echo "Note: work account '$WORK_USER' doesn't exist yet; run 'chezmoi apply' again after creating it."
+    fi
+  fi
+fi
+
+# ~/work -> the shared folder (in whichever account runs this).
+if [ -L "$HOME/work" ] || [ ! -e "$HOME/work" ]; then
+  ln -sfn "$DIR" "$HOME/work"
+elif [ -d "$HOME/work" ]; then
+  echo "Note: ~/work is still a real folder. Move its contents to $DIR, remove it, and run 'chezmoi apply' to link it."
+fi

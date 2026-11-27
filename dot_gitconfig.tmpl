@@ -41,7 +41,14 @@
 
 {{- if .workEmail }}
 
-# Repos under ~/work/ use the work email and work key
+# Repos under ~/work/ use the work email and work key. ~/work is a symlink to
+# /Users/Shared/Work/OptoScale and git sees the real path, so match both.
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig-work
+[includeIf "gitdir:/Users/Shared/Work/OptoScale/"]
+  path = ~/.gitconfig-work
+
+# The work macOS account uses repos owned by the main account.
+[safe]
+  directory = /Users/Shared/Work/*
 {{- end }}

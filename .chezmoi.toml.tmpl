@@ -4,8 +4,10 @@
 {{- $sshKey := promptStringOnce . "sshKey" "Personal GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work GitHub commit email, or leave empty to skip the work account" -}}
 {{- $workSshKey := "" -}}
+{{- $workUser := "" -}}
 {{- if $workEmail -}}
 {{-   $workSshKey = promptStringOnce . "workSshKey" "Work GitHub public SSH key (ssh-ed25519 AAAA...)" -}}
+{{-   $workUser = promptStringOnce . "workUser" "Short username of the separate macOS work account (it can be created later), or leave empty" -}}
 {{- end -}}
 [data]
   name = {{ $name | quote }}
@@ -13,3 +15,4 @@
   sshKey = {{ $sshKey | quote }}
   workEmail = {{ $workEmail | quote }}
   workSshKey = {{ $workSshKey | quote }}
+  workUser = {{ $workUser | quote }}
